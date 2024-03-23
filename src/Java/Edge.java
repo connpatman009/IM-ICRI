@@ -32,6 +32,6 @@ public class Edge {
 	}
 
 	public String toString() {
-		return "" + source + " " + destination + " (" + influenceProbability + ")";
+		return "" + source.getID() + " " + destination.getID() + " (" + influenceProbability + ")";
 	}
 }
