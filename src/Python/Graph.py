@@ -7,29 +7,29 @@ class Graph:
     # density: double = Ratio of how many edges you'd like there to be
     def __init__(self, numN, density):
         self.nodes = []
-        self.numNodes = numN
+        self.num_nodes = numN
         
         # Create a random graph with the number of nodes specified
-        for i in range(numN):
-            newNode = Node()
-            self.nodes.append(newNode)
+        for i in range(self.num_nodes):
+            new_node = Node()
+            self.nodes.append(new_node)
         
         # Randomly generate edges
         rng = random.Random()
-        for i in range(numN):
-            for j in range(numN):
+        for i in range(self.num_nodes):
+            for j in range(self.num_nodes):
                 if i == j:
                     continue
         
                 if rng.random() < density:
-                    src = self.getNode(i)
-                    dest = self.getNode(j)
+                    src = self.get_node(i)
+                    dest = self.get_node(j)
                     influence = rng.random()
                     if src is not None and dest is not None:
-                        src.addEdge(dest, influence)
+                        src.add_edge(dest, influence)
     
-    def getNode(self, id):
+    def get_node(self, id):
         for curr in self.nodes:
-            if curr.getID() == id:
+            if curr.id == id:
                 return curr
         return None

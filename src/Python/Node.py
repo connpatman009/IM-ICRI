@@ -13,14 +13,11 @@ class Node:
         self.edges = []
         self.active = False
     
-    def getID(self):
-        return self.id
-    
     # Add a new edge starting from this node leading to another node "destination"
-    def addEdge(self, destination, weight):
-        proposedEdge = Edge(self, destination, weight)
-        if proposedEdge not in self.edges:
-            self.edges.append(proposedEdge)
+    def add_edge(self, destination, weight):
+        proposed_edge = Edge(self, destination, weight)
+        if proposed_edge not in self.edges:
+            self.edges.append(proposed_edge)
             return True
         else:
             print("Edge already in graph")
@@ -35,9 +32,9 @@ class Node:
             sb.append("\n")
         sb.append("Edges: " + "\n")
         for e in self.edges:
-            sb.append(str(e.getDestination().getID()))
+            sb.append(str(e.destination.id))
             sb.append(" (")
-            sb.append(str(e.getIP()))
+            sb.append(str(e.ip))
             sb.append(")")
             sb.append(", ")
 

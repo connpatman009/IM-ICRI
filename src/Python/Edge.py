@@ -1,26 +1,17 @@
 class Edge:
     # src: Node = Source
     # dest: Node = Destination
-    # ip: int = influence probability
-    def __init__(self, src, dest, ip):
+    # ip: int = probability of src influencing dest
+    def __init__(self, src, dest, influence_probability):
         self.source = src
         self.destination = dest
-        self.influenceProbability = ip
-    
-    def getSource(self):
-        return self.source
-    
-    def getDestination(self):
-        return self.destination
-    
-    def getIP(self):
-        return self.influenceProbability
+        self.ip = influence_probability
     
     def equals(self, e):
-        if self.getSource() == e.getSource() and self.getDestination() == e.getDestination():
+        if self.source == e.source and self.destination == e.destination:
             return True
         else:
             return False
     
     def __str__(self):
-        return str(self.source.getID()) + " " + str(self.destination.getID()) + " (" + str(self.influenceProbability) + ")"
+        return str(self.source.id) + " " + str(self.destination.id) + " (" + str(self.ip) + ")"
