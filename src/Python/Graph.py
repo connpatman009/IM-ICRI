@@ -22,8 +22,8 @@ class Graph:
                     continue
         
                 if rng.random() < density:
-                    src = self.get_node(i)
-                    dest = self.get_node(j)
+                    src = self.nodes[i]
+                    dest = self.nodes[j]
                     influence = rng.random()
                     if src is not None and dest is not None:
                         src.add_edge(dest, influence)

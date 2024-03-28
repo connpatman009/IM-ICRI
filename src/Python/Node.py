@@ -13,6 +13,34 @@ class Node:
         self.edges = []
         self.active = False
     
+    def __str__(self):
+        sb = []
+        sb.append("Node " + str(self.id))
+        if self.active:
+            sb.append(" (ACTIVE)")
+        '''sb.append("\nEdges: [" + str(len(self.edges)) + "]\n")
+        for e in self.edges:
+            sb.append(str(e.destination.id))
+            sb.append(" (")
+            sb.append(str(e.ip))
+            sb.append(")")
+            sb.append(", ")
+        sb.pop()    # Remove the extra comma at the end'''
+
+        return "".join(sb)
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __eq__(self, other):
+        return len(self.edges) == len(other.edges)
+
+    def __ne__(self, other):
+        return not __eq__(self, other)
+
+    def __lt__(self, other):
+        return len(self.edges) < len(other.edges) 
+
     # Add a new edge starting from this node leading to another node "destination"
     def add_edge(self, destination, weight):
         proposed_edge = Edge(self, destination, weight)
@@ -22,22 +50,3 @@ class Node:
         else:
             print("Edge already in graph")
             return False
-    
-    def __str__(self):
-        sb = []
-        sb.append("Node " + str(self.id))
-        if self.active:
-            sb.append(" (ACTIVE)\n")
-        else:
-            sb.append("\n")
-        sb.append("Edges: " + "\n")
-        for e in self.edges:
-            sb.append(str(e.destination.id))
-            sb.append(" (")
-            sb.append(str(e.ip))
-            sb.append(")")
-            sb.append(", ")
-
-        sb.pop()    # Remove the extra comma at the end
-        sb.append("\n")
-        return "".join(sb)

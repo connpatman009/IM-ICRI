@@ -15,3 +15,6 @@ class Edge:
     
     def __str__(self):
         return str(self.source.id) + " " + str(self.destination.id) + " (" + str(self.ip) + ")"
+
+    def __repr__(self):
+        return self.__str__()
