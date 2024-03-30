@@ -33,13 +33,7 @@ class Node:
         return self.__str__()
 
     def __eq__(self, other):
-        return len(self.edges) == len(other.edges)
-
-    def __ne__(self, other):
-        return not __eq__(self, other)
-
-    def __lt__(self, other):
-        return len(self.edges) < len(other.edges) 
+        return self.id == other.id
 
     # Add a new edge starting from this node leading to another node "destination"
     def add_edge(self, destination, weight):

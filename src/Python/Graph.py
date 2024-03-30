@@ -24,7 +24,7 @@ class Graph:
                 if rng.random() < density:
                     src = self.nodes[i]
                     dest = self.nodes[j]
-                    influence = rng.random()
+                    influence = rng.random() / 2.0
                     if src is not None and dest is not None:
                         src.add_edge(dest, influence)
     
@@ -33,3 +33,9 @@ class Graph:
             if curr.id == id:
                 return curr
         return None
+
+    # Used in our IM-ICRI model. Increases the influence as the time limit approaches, up to a maximum of 0.95
+    def ramp_influence(self):
+        for node in self.nodes:
+            for edge in node.edges:
+                edge.ip = min(edge.ip + 0.1, 0.95)
