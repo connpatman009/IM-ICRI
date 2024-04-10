@@ -1,5 +1,6 @@
 import random
 import copy
+import math
 from Edge import Edge
 from Node import Node
 
@@ -78,5 +79,5 @@ class Graph:
         graph = copy.deepcopy(self)
         for i, node in enumerate(graph.nodes):
             for j, edge in enumerate(node.edges):
-                graph.nodes[i].edges[j].ip = (1-(t/time_limit)) * edge.ip
+                graph.nodes[i].edges[j].ip = (1-math.log2(2*t/time_limit + 1)) * edge.ip
         return graph
