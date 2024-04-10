@@ -7,9 +7,8 @@ class Node:
     # id: int = identification number for the node
     # edges: list = List of edges originating from this node
     # active: bool = Indicates whether the node has been activated yet
-    def __init__(self):
-        self.id = Node.nodeCount
-        Node.nodeCount += 1
+    def __init__(self, id):
+        self.id = id
         self.edges = []
         self.active = False
     
@@ -30,14 +29,33 @@ class Node:
         return "".join(sb)
 
     def __repr__(self):
-        return self.__str__()
+        sb = [self.__str__()]
+        sb.append("\nEdges: [" + str(len(self.edges)) + "]\n")
+        for e in self.edges:
+            sb.append(str(e.destination))
+            sb.append(" (")
+            sb.append(str(e.ip))
+            sb.append(")")
+            sb.append(", ")
+        sb.pop()    # Remove the extra comma at the end
+        return "".join(sb)
 
     def __eq__(self, other):
         return self.id == other.id
-
+    
+    def __deepcopy__(self, memo=[]):
+        node = Node(self.id)
+        node.active = self.active
+        for edge in self.edges:
+            node.add_edge(edge.destination, edge.ip, edge.dp)
+        return node
+            
+    def __hash__(self):
+        return self.id
+    
     # Add a new edge starting from this node leading to another node "destination"
-    def add_edge(self, destination, weight):
-        proposed_edge = Edge(self, destination, weight)
+    def add_edge(self, destination, weight, change):
+        proposed_edge = Edge(self.id, destination, weight, change)
         if proposed_edge not in self.edges:
             self.edges.append(proposed_edge)
             return True
