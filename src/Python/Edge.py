@@ -1,6 +1,6 @@
 class Edge:
-    # src: Node = Source
-    # dest: Node = Destination
+    # src: int = Source
+    # dest: int = Destination
     # ip: int = probability of src influencing dest
     def __init__(self, src, dest, influence_probability, delta_probability):
         self.source = src
