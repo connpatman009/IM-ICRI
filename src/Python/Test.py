@@ -38,7 +38,7 @@ class Test:
                 graph.ramp_influence()
 
         # After IC is done, return the list of activated nodes (Flattened)
-        return {node for timestep in activated for node in timestep}    # Return a flattened list of activated nodes
+        return [node for timestep in activated for node in timestep]    # Return a flattened list of activated nodes
 
 
     # Helper method to get the seed set, returns a list of nodes selected to be in the seed set already activated
