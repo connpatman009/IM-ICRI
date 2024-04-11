@@ -17,8 +17,8 @@ class Test:
         graph = copy.deepcopy(sim_graph)
         for t in range(time):
             activated.append([])
-            if(ramping):
-                graph.ramp_influence()
+            #if(ramping):
+            #    graph.ramp_influence()
         activated.append(seed_set)
         if(ramping):
             graph.ramp_influence()
@@ -158,8 +158,8 @@ class Test:
         if time_selection == "greedy":
             greedy_seed_time = 0
             best_avg_activated = 0
+            test_graph = copy.deepcopy(graph)
             for t in range(time_limit):
-                test_graph = copy.deepcopy(graph)
                 seed_set_t = self.get_seed_set(test_graph, seed_selection, k, t, time_limit, ramping)
                 avg_activated = 0
                 for sim in range(MONTE_CARLO_TRIALS):
@@ -169,18 +169,21 @@ class Test:
                     print(f"Woohoo better at time {t}")
                     best_avg_activated = avg_activated
                     greedy_seed_time = t
+                test_graph.ramp_influence()
         if time_selection == "damped_greedy":
             greedy_seed_time = 0
             best_avg_activated = 0
+            test_graph = copy.deepcopy(graph)
             for t in range(time_limit):
-                seed_set_t = self.get_seed_set(graph, seed_selection, k, t, time_limit, ramping)
+                seed_set_t = self.get_seed_set(test_graph, seed_selection, k, t, time_limit, ramping)
                 avg_activated = 0
                 for sim in range(MONTE_CARLO_TRIALS):
-                    avg_activated += len(self.sim_IC(graph.dampen_graph(t, time_limit), seed_set_t, t, time_limit, ramping)) / MONTE_CARLO_TRIALS
+                    avg_activated += len(self.sim_IC(test_graph.dampen_graph(t, time_limit), seed_set_t, t, time_limit, ramping)) / MONTE_CARLO_TRIALS
                 print(avg_activated)
                 if avg_activated > best_avg_activated:
                     best_avg_activated = avg_activated
                     greedy_seed_time = t
+                test_graph.ramp_influence()
 
         # A_0 = {initially activated nodes}
         if time_selection == "t=0" or (time_selection == "random" and random_seed_time == 0) or (time_selection == "greedy" and greedy_seed_time == 0) or (time_selection == "damped_greedy" and greedy_seed_time == 0):
@@ -230,13 +233,13 @@ class Test:
                     w = graph.nodes[w_edge.destination]
                     roll = rng.random()
                     active = "ACTIVE" if w.active else "NOT ACTIVE"
-                    print(f"Trying to activate Node {w.id} ({active}), with roll={roll} and roll needing to be lower than {w_edge.ip}")
+                    #print(f"Trying to activate Node {w.id} ({active}), with roll={roll} and roll needing to be lower than {w_edge.ip}")
                     if not w.active and roll < w_edge.ip:    # Randomly influence the neighbor accoring to the likelihood of influence
-                        print(f"Activating Node {w.id} at time {t}")
+                        #print(f"Activating Node {w.id} at time {t}")
                         t_activated.append(w)           # A_t = A_t U {w}
                         w.active = True
-                        if graph.nodes[w.id].active:
-                            print(f"Node {w.id} actually active!")
+                        #if graph.nodes[w.id].active:
+                        #    print(f"Node {w.id} actually active!")
 
             if (seed_selected and (len(t_activated) == 0)):
                 print("No more activated at", t)
