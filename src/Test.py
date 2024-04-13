@@ -1,6 +1,7 @@
 import random
 import heapq
 import copy
+import time
 from Edge import Edge
 from Graph import Graph
 from Node import Node
@@ -13,8 +14,11 @@ class Test:
     #   TODO: Update with the ramping influence model
     def sim_IC(self, sim_graph, seed_set, time, time_limit, ramping):
         time_left = time_limit - time
-        activated = []                                  # List of which nodes are activated at each time step
         graph = copy.deepcopy(sim_graph)
+        activated = []                                  # List of which nodes are activated at each time step
+        for t in range(time):
+            activated.append([])
+        activated.append(seed_set)
         
         for t in range(time+1, time_limit):
             t_activated = []                            # A_t = {}
@@ -258,94 +262,139 @@ if __name__ == "__main__":
     seed_size = 3
     # Random seed set selection
     print("SeedSet: RANDOM, Time: T=0")
+    start_t = time.time()
     result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["random", "t=0"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    end_t = time.time()
+    print("Time:", end_t - start_t)
+    print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)
 
     print("\n\n\nSeedSet: RANDOM, Time: MIDPOINT")
+    start_t = time.time()
     result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["random", "midpoint"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    end_t = time.time()
+    print("Time:", end_t - start_t)
+    print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)
 
     print("\n\n\nSeedSet: RANDOM, Time: RANDOM")
+    start_t = time.time()
     result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["random", "random"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    end_t = time.time()
+    print("Time:", end_t - start_t)
+    print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)
     
     print("\n\n\nSeedSet: RANDOM, Time: GREEDY")
+    start_t = time.time()
     result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["random", "greedy"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    end_t = time.time()
+    print("Time:", end_t - start_t)
+    print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)
         
     print("\n\n\nSeedSet: RANDOM, Time: DAMPED GREEDY")
+    start_t = time.time()
     result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["random", "damped_greedy"], ramping=True, rng=rng)
+    end_t = time.time()
+    print("Time:", end_t - start_t)
     print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    #for node in result:
+    #    print(node)
 
 
     # Greedy seed set selection
     print("\n\n\nSeedSet: GREEDY, Time: T=0")
+    start_t = time.time()
     result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["greedy", "t=0"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    end_t = time.time()
+    print("Time:", end_t - start_t)
+    print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)
 
     print("\n\n\nSeedSet: GREEDY, Time: MIDPOINT")
+    start_t = time.time()
     result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["greedy", "midpoint"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    end_t = time.time()
+    print("Time:", end_t - start_t)
+    print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)
 
     print("\n\n\nSeedSet: GREEDY, Time: RANDOM")
+    start_t = time.time()
     result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["greedy", "random"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    end_t = time.time()
+    print("Time:", end_t - start_t)
+    print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)
         
     print("\n\n\nSeedSet: GREEDY, Time: GREEDY")
+    start_t = time.time()
     result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["greedy", "greedy"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    end_t = time.time()
+    print("Time:", end_t - start_t)
+    print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)
 
     print("\n\n\nSeedSet: GREEDY, Time: DAMPED GREEDY")
+    start_t = time.time()
     result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["greedy", "damped_greedy"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    end_t = time.time()
+    print("Time:", end_t - start_t)
+    print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)
     
     # Damped greedy seed set selection
-    print("\n\n\nSeedSet: DAMPED GREEDY, Time: T=0")
-    result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["damped_greedy", "t=0"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    #print("\n\n\nSeedSet: DAMPED GREEDY, Time: T=0")
+    #start_t = time.time()
+    #result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["damped_greedy", "t=0"], ramping=True, rng=rng)
+    #end_t = time.time()
+    #print("Time:", end_t - start_t)
+    #print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)
 
-    print("\n\n\nSeedSet: DAMPED GREEDY, Time: MIDPOINT")
-    result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["damped_greedy", "midpoint"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    #print("\n\n\nSeedSet: DAMPED GREEDY, Time: MIDPOINT")
+    #start_t = time.time()
+    #result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["damped_greedy", "midpoint"], ramping=True, rng=rng)
+    #end_t = time.time()
+    #print("Time:", end_t - start_t)
+    #print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)
 
-    print("\n\n\nSeedSet: DAMPED GREEDY, Time: RANDOM")
-    result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["damped_greedy", "random"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    #print("\n\n\nSeedSet: DAMPED GREEDY, Time: RANDOM")
+    #start_t = time.time()
+    #result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["damped_greedy", "random"], ramping=True, rng=rng)
+    #end_t = time.time()
+    #print("Time:", end_t - start_t)
+    #print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)
         
-    print("\n\n\nSeedSet: DAMPED GREEDY, Time: GREEDY")
-    result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["damped_greedy", "greedy"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    #print("\n\n\nSeedSet: DAMPED GREEDY, Time: GREEDY")
+    #start_t = time.time()
+    #result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["damped_greedy", "greedy"], ramping=True, rng=rng)
+    #end_t = time.time()
+    #print("Time:", end_t - start_t)
+    #print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)
 
-    print("\n\n\nSeedSet: DAMPED GREEDY, Time: DAMPED GREEDY")
-    result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["damped_greedy", "damped_greedy"], ramping=True, rng=rng)
-    print(len(result), "nodes activated:")
-    for node in result:
-        print(node)
+    #print("\n\n\nSeedSet: DAMPED GREEDY, Time: DAMPED GREEDY")
+    #start_t = time.time()
+    #result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["damped_greedy", "damped_greedy"], ramping=True, rng=rng)
+    #end_t = time.time()
+    #print("Time:", end_t - start_t)
+    #print(len(result), "nodes activated")
+    #for node in result:
+    #    print(node)

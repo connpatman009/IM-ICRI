@@ -1,63 +1,31 @@
 SeedSet: RANDOM, Time: T=0
-Seed set selected at 0
-[Node 3 (ACTIVE), Node 2 (ACTIVE)]
 3 nodes activated:
-Node 3 (ACTIVE)
-Node 2 (ACTIVE)
-Node 5 (ACTIVE)
 
 
 
 SeedSet: RANDOM, Time: MIDPOINT
-Seed set selected at 2
-[Node 13 (ACTIVE), Node 15 (ACTIVE)]
-6 nodes activated:
-Node 13 (ACTIVE)
-Node 15 (ACTIVE)
-Node 18 (ACTIVE)
-Node 11 (ACTIVE)
-Node 12 (ACTIVE)
-Node 14 (ACTIVE)
+15 nodes activated:
 
 
 
 SeedSet: RANDOM, Time: RANDOM
-Seed set selected at 1
-[Node 23 (ACTIVE), Node 22 (ACTIVE)]
-2 nodes activated:
-Node 23 (ACTIVE)
-Node 22 (ACTIVE)
+12 nodes activated:
+
+
+
+SeedSet: RANDOM, Time: GREEDY
+3 nodes activated:
+
+
+
+SeedSet: RANDOM, Time: DAMPED GREEDY
+7 nodes activated:
 
 
 
 SeedSet: GREEDY, Time: T=0
-Seed set selected at 0
-[Node 31 (ACTIVE), Node 34 (ACTIVE)]
-4 nodes activated:
-Node 31 (ACTIVE)
-Node 34 (ACTIVE)
-Node 38 (ACTIVE)
-Node 35 (ACTIVE)
+23 nodes activated:
 
 
 
 SeedSet: GREEDY, Time: MIDPOINT
-Seed set selected at 2
-[Node 43 (ACTIVE), Node 40 (ACTIVE)]
-4 nodes activated:
-Node 43 (ACTIVE)
-Node 40 (ACTIVE)
-Node 46 (ACTIVE)
-Node 42 (ACTIVE)
-
-
-
-SeedSet: GREEDY, Time: RANDOM
-Seed set selected at 2
-[Node 59 (ACTIVE), Node 57 (ACTIVE)]
-5 nodes activated:
-Node 59 (ACTIVE)
-Node 57 (ACTIVE)
-Node 52 (ACTIVE)
-Node 56 (ACTIVE)
-Node 50 (ACTIVE)
