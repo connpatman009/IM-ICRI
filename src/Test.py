@@ -172,7 +172,7 @@ class Test:
             greedy_seed_time = 0
             best_avg_activated = 0
             test_graph = copy.deepcopy(graph)
-            for t in range(time_limit):
+            for t in range(0, time_limit, 2):        # Trial every X timesteps as the start timestep
                 seed_set_t = self.get_seed_set(test_graph, seed_selection, k, t, time_limit, ramping)
                 avg_activated = 0
                 for sim in range(MONTE_CARLO_TRIALS):
@@ -297,12 +297,12 @@ if __name__ == "__main__":
     #for node in result:
     #    print(node)
         
-    print("\n\n\nSeedSet: RANDOM, Time: DAMPED GREEDY")
-    start_t = time.time()
-    result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["random", "damped_greedy"], ramping=True, rng=rng)
-    end_t = time.time()
-    print("Time:", end_t - start_t)
-    print(len(result), "nodes activated:")
+    #print("\n\n\nSeedSet: RANDOM, Time: DAMPED GREEDY")
+    #start_t = time.time()
+    #result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["random", "damped_greedy"], ramping=True, rng=rng)
+    #end_t = time.time()
+    #print("Time:", end_t - start_t)
+    #print(len(result), "nodes activated:")
     #for node in result:
     #    print(node)
 
@@ -344,12 +344,12 @@ if __name__ == "__main__":
     #for node in result:
     #    print(node)
 
-    print("\n\n\nSeedSet: GREEDY, Time: DAMPED GREEDY")
-    start_t = time.time()
-    result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["greedy", "damped_greedy"], ramping=True, rng=rng)
-    end_t = time.time()
-    print("Time:", end_t - start_t)
-    print(len(result), "nodes activated")
+    #print("\n\n\nSeedSet: GREEDY, Time: DAMPED GREEDY")
+    #start_t = time.time()
+    #result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["greedy", "damped_greedy"], ramping=True, rng=rng)
+    #end_t = time.time()
+    #print("Time:", end_t - start_t)
+    #print(len(result), "nodes activated")
     #for node in result:
     #    print(node)
     
