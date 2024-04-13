@@ -15,13 +15,7 @@ class Test:
         time_left = time_limit - time
         activated = []                                  # List of which nodes are activated at each time step
         graph = copy.deepcopy(sim_graph)
-        for t in range(time):
-            activated.append([])
-            #if(ramping):
-            #    graph.ramp_influence()
-        activated.append(seed_set)
-        if(ramping):
-            graph.ramp_influence()
+        
         for t in range(time+1, time_limit):
             t_activated = []                            # A_t = {}
             for v in activated[t-1]:                    # for v in A_(t-1)
@@ -54,7 +48,7 @@ class Test:
             case "greedy":      # Monte Carlo Greedy Approximation
                 seed_set = []
                 for i in range(k):
-                    print(f"Choosing node {i}")
+                    #print(f"Choosing node {i}")
                     sim_activated = []      #List of how many nodes (on average) were activated when adding w to the seed set
                     sim_w = []              # Parallel list of w
 
@@ -94,7 +88,7 @@ class Test:
             case "damped_greedy":      # Monte Carlo Greedy Approximation
                     seed_set = []
                     for i in range(k):
-                        print(f"Choosing node {i}")
+                        #print(f"Choosing node {i}")
                         sim_activated = []      #List of how many nodes (on average) were activated when adding w to the seed set
                         sim_w = []              # Parallel list of w
 
@@ -164,9 +158,9 @@ class Test:
                 avg_activated = 0
                 for sim in range(MONTE_CARLO_TRIALS):
                     avg_activated += len(self.sim_IC(test_graph, seed_set_t, t, time_limit, ramping)) / MONTE_CARLO_TRIALS
-                print(avg_activated)
+                #print(avg_activated)
                 if avg_activated > best_avg_activated:
-                    print(f"Woohoo better at time {t}")
+                    #print(f"Woohoo better at time {t}")
                     best_avg_activated = avg_activated
                     greedy_seed_time = t
                 test_graph.ramp_influence()
@@ -179,7 +173,7 @@ class Test:
                 avg_activated = 0
                 for sim in range(MONTE_CARLO_TRIALS):
                     avg_activated += len(self.sim_IC(test_graph.dampen_graph(t, time_limit), seed_set_t, t, time_limit, ramping)) / MONTE_CARLO_TRIALS
-                print(avg_activated)
+                #print(avg_activated)
                 if avg_activated > best_avg_activated:
                     best_avg_activated = avg_activated
                     greedy_seed_time = t
@@ -189,13 +183,13 @@ class Test:
         if time_selection == "t=0" or (time_selection == "random" and random_seed_time == 0) or (time_selection == "greedy" and greedy_seed_time == 0) or (time_selection == "damped_greedy" and greedy_seed_time == 0):
             seed_set = self.get_seed_set(graph, seed_selection, k, 0, time_limit, ramping)
             seed_selected = True
-            print("Seed set selected at 0")
-            print(seed_set)
+            #print("Seed set selected at 0")
+            #print(seed_set)
             activated.append(seed_set)
         else:
             activated.append([])
         for t in range(1, time_limit):
-            print("t =", t)
+            #print("t =", t)
             # Determine whether to select your seed set at time step t
             if not seed_selected:
                 match time_selection:
@@ -203,24 +197,24 @@ class Test:
                         if t == int(time_limit / 2):
                             seed_set = self.get_seed_set(graph, seed_selection, k, t, time_limit, ramping)
                             seed_selected = True
-                            print("Seed set selected at", t)
-                            print(seed_set)
+                            #print("Seed set selected at", t)
+                            #print(seed_set)
                             activated.append(seed_set)
                             continue
                     case "random":
                         if t == random_seed_time:
                             seed_set = self.get_seed_set(graph, seed_selection, k, t, time_limit, ramping)
                             seed_selected = True
-                            print("Seed set selected at", t)
-                            print(seed_set)
+                            #print("Seed set selected at", t)
+                            #print(seed_set)
                             activated.append(seed_set)
                             continue
                     case "greedy" | "damped_greedy":
                         if t == greedy_seed_time:
                             seed_set = self.get_seed_set(graph, seed_selection, k, t, time_limit, ramping)
                             seed_selected = True
-                            print("Seed set selected at", t)
-                            print(seed_set)
+                            #print("Seed set selected at", t)
+                            #print(seed_set)
                             activated.append(seed_set)
                             continue
                     case _:
@@ -242,7 +236,7 @@ class Test:
                         #    print(f"Node {w.id} actually active!")
 
             if (seed_selected and (len(t_activated) == 0)):
-                print("No more activated at", t)
+                #print("No more activated at", t)
                 break
             # print(t_activated)
             activated.append(t_activated)               # Add A_t to A
@@ -252,7 +246,7 @@ class Test:
                 
 
         # After IC is done, return the list of activated nodes (Flattened)
-        return {node for timestep in activated for node in timestep}    # Return a flattened list of activated nodes
+        return [node for timestep in activated for node in timestep]    # Return a flattened list of activated nodes
         # return activated                                              # Return activated nodes in lists by timestep activated
 
 if __name__ == "__main__":
