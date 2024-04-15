@@ -157,7 +157,7 @@ class Test:
             greedy_seed_time = 0
             best_avg_activated = 0
             test_graph = copy.deepcopy(graph)
-            for t in range(time_limit):
+            for t in range(0, time_limit, 2):        # Trial every X timesteps as the start timestep
                 seed_set_t = self.get_seed_set(test_graph, seed_selection, k, t, time_limit, ramping)
                 avg_activated = 0
                 for sim in range(MONTE_CARLO_TRIALS):
@@ -172,7 +172,7 @@ class Test:
             greedy_seed_time = 0
             best_avg_activated = 0
             test_graph = copy.deepcopy(graph)
-            for t in range(0, time_limit, 2):        # Trial every X timesteps as the start timestep
+            for t in range(time_limit):
                 seed_set_t = self.get_seed_set(test_graph, seed_selection, k, t, time_limit, ramping)
                 avg_activated = 0
                 for sim in range(MONTE_CARLO_TRIALS):
@@ -201,7 +201,7 @@ class Test:
                         if t == int(time_limit / 2):
                             seed_set = self.get_seed_set(graph, seed_selection, k, t, time_limit, ramping)
                             seed_selected = True
-                            #print("Seed set selected at", t)
+                            print("Seed set selected at", t)
                             #print(seed_set)
                             activated.append(seed_set)
                             continue
@@ -209,7 +209,7 @@ class Test:
                         if t == random_seed_time:
                             seed_set = self.get_seed_set(graph, seed_selection, k, t, time_limit, ramping)
                             seed_selected = True
-                            #print("Seed set selected at", t)
+                            print("Seed set selected at", t)
                             #print(seed_set)
                             activated.append(seed_set)
                             continue
@@ -217,7 +217,7 @@ class Test:
                         if t == greedy_seed_time:
                             seed_set = self.get_seed_set(graph, seed_selection, k, t, time_limit, ramping)
                             seed_selected = True
-                            #print("Seed set selected at", t)
+                            print("Seed set selected at", t)
                             #print(seed_set)
                             activated.append(seed_set)
                             continue
@@ -256,10 +256,13 @@ class Test:
 if __name__ == "__main__":
     test = Test()
     rng = random.Random()
+
+    # Testing parameters
     tl = 10
     size = 1000
+    seed_size = 10
     graph = Graph.gen_random(size, 10/(size*tl))
-    seed_size = 3
+
     # Random seed set selection
     print("SeedSet: RANDOM, Time: T=0")
     start_t = time.time()
