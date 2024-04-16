@@ -1,0 +1,49 @@
+SeedSet: RANDOM, Time: T=0
+Time: 0.007668972015380859
+484 nodes activated
+
+
+
+SeedSet: RANDOM, Time: MIDPOINT
+Seed set selected at 5
+Time: 0.007151365280151367
+480 nodes activated
+
+
+
+SeedSet: RANDOM, Time: RANDOM
+Seed set selected at 8
+Time: 0.007565021514892578
+50 nodes activated
+
+
+
+SeedSet: RANDOM, Time: GREEDY
+Time: 0.21442127227783203
+488 nodes activated
+
+
+
+SeedSet: GREEDY, Time: T=0
+Time: 286.2657434940338
+492 nodes activated
+
+
+
+SeedSet: GREEDY, Time: MIDPOINT
+Seed set selected at 5
+Time: 185.1371500492096
+492 nodes activated
+
+
+
+SeedSet: GREEDY, Time: RANDOM
+Seed set selected at 9
+Time: 74.69442176818848
+10 nodes activated
+
+
+
+SeedSet: GREEDY, Time: GREEDY
+Time: 1336.1341235637665
+485 nodes activated

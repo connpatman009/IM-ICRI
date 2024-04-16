@@ -2,6 +2,7 @@ import random
 import heapq
 import copy
 import time
+import sys
 from Edge import Edge
 from Graph import Graph
 from Node import Node
@@ -157,7 +158,7 @@ class Test:
             greedy_seed_time = 0
             best_avg_activated = 0
             test_graph = copy.deepcopy(graph)
-            for t in range(0, time_limit, 2):        # Trial every X timesteps as the start timestep
+            for t in range(0, time_limit, 2):        # Trial every other timestep as the start timestep
                 seed_set_t = self.get_seed_set(test_graph, seed_selection, k, t, time_limit, ramping)
                 avg_activated = 0
                 for sim in range(MONTE_CARLO_TRIALS):
@@ -259,7 +260,7 @@ if __name__ == "__main__":
 
     # Testing parameters
     tl = 10
-    size = 1000
+    size = 500
     seed_size = 10
     graph = Graph.gen_random(size, 10/(size*tl))
 
@@ -270,6 +271,7 @@ if __name__ == "__main__":
     end_t = time.time()
     print("Time:", end_t - start_t)
     print(len(result), "nodes activated")
+    print("RANDOM, T=0", file=sys.stderr)
     #for node in result:
     #    print(node)
 
@@ -279,6 +281,7 @@ if __name__ == "__main__":
     end_t = time.time()
     print("Time:", end_t - start_t)
     print(len(result), "nodes activated")
+    print("RANDOM, MIDPOINT", file=sys.stderr)
     #for node in result:
     #    print(node)
 
@@ -288,6 +291,7 @@ if __name__ == "__main__":
     end_t = time.time()
     print("Time:", end_t - start_t)
     print(len(result), "nodes activated")
+    print("RANDOM, RANDOM", file=sys.stderr)
     #for node in result:
     #    print(node)
     
@@ -297,6 +301,7 @@ if __name__ == "__main__":
     end_t = time.time()
     print("Time:", end_t - start_t)
     print(len(result), "nodes activated")
+    print("RANDOM, GREEDY", file=sys.stderr)
     #for node in result:
     #    print(node)
         
@@ -317,6 +322,7 @@ if __name__ == "__main__":
     end_t = time.time()
     print("Time:", end_t - start_t)
     print(len(result), "nodes activated")
+    print("GREEDY, T=0", file=sys.stderr)
     #for node in result:
     #    print(node)
 
@@ -326,6 +332,7 @@ if __name__ == "__main__":
     end_t = time.time()
     print("Time:", end_t - start_t)
     print(len(result), "nodes activated")
+    print("GREEDY, MIDPOINT", file=sys.stderr)
     #for node in result:
     #    print(node)
 
@@ -335,6 +342,7 @@ if __name__ == "__main__":
     end_t = time.time()
     print("Time:", end_t - start_t)
     print(len(result), "nodes activated")
+    print("GREEDY, RANDOM", file=sys.stderr)
     #for node in result:
     #    print(node)
         
@@ -344,6 +352,7 @@ if __name__ == "__main__":
     end_t = time.time()
     print("Time:", end_t - start_t)
     print(len(result), "nodes activated")
+    print("GREEDY, GREEDY", file=sys.stderr)
     #for node in result:
     #    print(node)
 
