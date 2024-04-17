@@ -259,8 +259,8 @@ if __name__ == "__main__":
     rng = random.Random()
 
     # Testing parameters
-    tl = 10
-    size = 500
+    tl = 100
+    size = 1000
     seed_size = 10
     graph = Graph.gen_random(size, 10/(size*tl))
 
