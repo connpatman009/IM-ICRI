@@ -258,13 +258,13 @@ if __name__ == "__main__":
     test = Test()
     rng = random.Random()
 
-    # Testing parameters
-    tl = 50
-    size = 1000
-    seed_size = 10
+    ### Testing parameters ###
+    tl = 10
+    size = 100
+    seed_size = 3
     graph = Graph.gen_random(size, 10/(size*tl))
 
-    # Random seed set selection
+    ### Random seed set selection ###
     print("SeedSet: RANDOM, Time: T=0")
     start_t = time.time()
     result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["random", "t=0"], ramping=True, rng=rng)
@@ -315,7 +315,7 @@ if __name__ == "__main__":
     #    print(node)
 
 
-    # Greedy seed set selection
+    ### Greedy seed set selection ##
     print("\n\n\nSeedSet: GREEDY, Time: T=0")
     start_t = time.time()
     result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["greedy", "t=0"], ramping=True, rng=rng)
@@ -365,7 +365,7 @@ if __name__ == "__main__":
     #for node in result:
     #    print(node)
     
-    # Damped greedy seed set selection
+    ### Damped greedy seed set selection ###
     #print("\n\n\nSeedSet: DAMPED GREEDY, Time: T=0")
     #start_t = time.time()
     #result = test.independent_cascade(sim_graph=copy.deepcopy(graph), time_limit=tl, k=seed_size, algo=["damped_greedy", "t=0"], ramping=True, rng=rng)
